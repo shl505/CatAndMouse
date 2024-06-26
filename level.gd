@@ -39,13 +39,13 @@ func _process(delta):
 		
 
 func update_score():
-	$Score.text = " ניקוד:" + (str(score))
+	$Score.text = " score:" + (str(score))
 
 func update_life():
-	$Life.text = "חיים: " + (str(life))
+	$Life.text = "life: " + (str(life))
 
 func game_over():
-	$Label.text = "המשחק נגמר.\nהניקוד שלך הוא: " + str(score)
+	$Label.text = "game over.\nyour score is: " + str(score)
 	$EndTimer.start()
 	$Cat.hide()
 	$AudioStreamPlayer.stop()
