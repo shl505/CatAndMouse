@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://dangc07yd0bqq"]
+
+[ext_resource type="Texture2D" uid="uid://cxb82fvelq33w" path="res://חתול 1.png" id="1_fg7sv"]
+[ext_resource type="Texture2D" uid="uid://ur63iudl0cm" path="res://חתול 2.png" id="2_uwpf1"]
+[ext_resource type="Texture2D" uid="uid://cldummvf1st7p" path="res://חתול 3.png" id="3_g3nnj"]
+[ext_resource type="Texture2D" uid="uid://b4kf5j1bupv80" path="res://חתול 4.png" id="4_oyo6c"]
+[ext_resource type="Texture2D" uid="uid://clo6v6j658cm7" path="res://חתול 5.png" id="5_8u7nv"]
+[ext_resource type="Texture2D" uid="uid://cew7vf1g510o7" path="res://חתול 6.png" id="6_vi1w0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ppr5s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fg7sv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uwpf1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g3nnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oyo6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8u7nv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vi1w0")
+}],
+"loop": true,
+"name": &"cat",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxigb"]
+size = Vector2(890, 730)
+
+[node name="Cat" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-40, 0)
+sprite_frames = SubResource("SpriteFrames_ppr5s")
+animation = &"cat"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gxigb")

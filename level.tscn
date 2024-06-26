@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckufnhsfttenq"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_1etwm"]
+[ext_resource type="Texture2D" uid="uid://cejlcxy6pmxsk" path="res://street.jpg" id="1_uaufq"]
+[ext_resource type="PackedScene" uid="uid://bvq6m2ddhtoxq" path="res://box.tscn" id="3_matvy"]
+[ext_resource type="PackedScene" uid="uid://dangc07yd0bqq" path="res://cat.tscn" id="4_fhro0"]
+[ext_resource type="AudioStream" uid="uid://c6dsek8ljnr71" path="res://677797__groonlodk__light-music-loop.ogg" id="5_u7gns"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_1etwm")
+
+[node name="Street" type="Sprite2D" parent="."]
+position = Vector2(576.5, 324.5)
+scale = Vector2(0.143625, 0.141545)
+texture = ExtResource("1_uaufq")
+
+[node name="Box" parent="." instance=ExtResource("3_matvy")]
+
+[node name="Box2" parent="." instance=ExtResource("3_matvy")]
+
+[node name="Box3" parent="." instance=ExtResource("3_matvy")]
+
+[node name="Box4" parent="." instance=ExtResource("3_matvy")]
+
+[node name="Cat" parent="." instance=ExtResource("4_fhro0")]
+
+[node name="Score" type="Label" parent="."]
+offset_left = 1000.0
+offset_top = 30.0
+offset_right = 1040.0
+offset_bottom = 53.0
+
+[node name="Life" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 30.0
+offset_right = 140.0
+offset_bottom = 53.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 526.0
+offset_top = 324.0
+offset_right = 566.0
+offset_bottom = 347.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 120.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_u7gns")
+autoplay = true
+
+[connection signal="cat_is_damaged" from="Box" to="." method="_on_box_cat_is_damaged"]
+[connection signal="cat_is_eated" from="Box" to="." method="_on_box_cat_is_eated"]
+[connection signal="cat_is_damaged" from="Box2" to="." method="_on_box_2_cat_is_damaged"]
+[connection signal="cat_is_eated" from="Box2" to="." method="_on_box_2_cat_is_eated"]
+[connection signal="cat_is_damaged" from="Box3" to="." method="_on_box_3_cat_is_damaged"]
+[connection signal="cat_is_eated" from="Box3" to="." method="_on_box_3_cat_is_eated"]
+[connection signal="cat_is_damaged" from="Box4" to="." method="_on_box_4_cat_is_damaged"]
+[connection signal="cat_is_eated" from="Box4" to="." method="_on_box_4_cat_is_eated"]
+[connection signal="timeout" from="EndTimer" to="." method="_on_end_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

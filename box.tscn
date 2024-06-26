@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvq6m2ddhtoxq"]
+
+[ext_resource type="Script" path="res://box.gd" id="1_fldgr"]
+[ext_resource type="Texture2D" uid="uid://l3fq780kqmkj" path="res://box.png" id="2_sdra1"]
+[ext_resource type="Texture2D" uid="uid://dw48yj71v4gd0" path="res://mouse image.png" id="3_jg8k1"]
+[ext_resource type="Texture2D" uid="uid://51fpavw8f4ew" path="res://dog.png" id="4_30v6q"]
+[ext_resource type="AudioStream" uid="uid://cmgllvra4yic3" path="res://נביחת כלב.wav" id="5_aamu8"]
+[ext_resource type="AudioStream" uid="uid://ep50ahwnx06b" path="res://ציוץ עכבר.wav" id="6_pll2b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccyjt"]
+size = Vector2(144, 116)
+
+[node name="Box" type="Area2D"]
+script = ExtResource("1_fldgr")
+
+[node name="BoxImage" type="Sprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_sdra1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -1)
+shape = SubResource("RectangleShape2D_ccyjt")
+
+[node name="MouseImage" type="Sprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_jg8k1")
+
+[node name="DogImage" type="Sprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("4_30v6q")
+
+[node name="BoxTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="DogSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_aamu8")
+volume_db = -10.0
+
+[node name="MouseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pll2b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="BoxTimer" to="." method="_on_box_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
